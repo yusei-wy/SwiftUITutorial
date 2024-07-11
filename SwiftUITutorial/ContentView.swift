@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+  @State var countValue = 0
+
   var body: some View {
     NavigationSplitView {
       VStack {
-        Text("Jboy.dart")
-          .foregroundStyle(.black)
-        Image(systemName: "applelogo")
-        Text("こんにちは")
+        Text("\(countValue)個だよ")
+        Button("増やす") {
+          countValue += 1
+        }
+        .foregroundStyle(.white)
+        .buttonStyle(.borderedProminent)
+        .tint(.black)
       }
-      .padding()
     } detail: {
     }
   }
