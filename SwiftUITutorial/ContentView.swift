@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State var countValue = 0
+  @State var cnt = 0
 
   var body: some View {
-    NavigationSplitView {
-      VStack {
-        Text("\(countValue)個だよ")
-        Button("増やす") {
-          countValue += 1
-        }
-        .foregroundStyle(.white)
-        .buttonStyle(.borderedProminent)
-        .tint(.black)
+    HStack {
+      Button("-") {
+        cnt -= 1
       }
-    } detail: {
+      Text("Count: \(cnt)")
+      Button("+") {
+        cnt += 1
+      }
     }
   }
 }
