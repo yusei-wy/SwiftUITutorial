@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var selection = "Dart"
-  let languages = ["Dart", "Swift", "Kotlin", "Go", "Rust", "Scala"]
+  @State private var selectedIndex = 0
+  private let selectNames = ["男性", "女性", "その他"]
 
   var body: some View {
     VStack {
-      Picker("Select a paint color", selection: $selection) {
-        ForEach(languages, id: \.self) {
-          Text($0)
-        }
-      }
-      .pickerStyle(.menu)
+      Spacer()
       
-      Text("選択された言語は: \(selection)")
+      ForEach(0..<selectNames.count, id: \.self, content: { index in
+        HStack {
+          Text(selectNames[index])
+          
+          Image(systemName: selectedIndex == index ? "checkmark.circle.fill" : "circle")
+            .foregroundStyle(.blue)
+        }
+          .frame(height: 40)
+          .onTapGesture {
+            selectedIndex = index
+          }
+      })
+      
+      Spacer()
     }
   }
 }
