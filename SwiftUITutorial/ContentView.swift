@@ -8,27 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var isPlaying = false
+  @State private var selection = "Dart"
+  let languages = ["Dart", "Swift", "Kotlin", "Go", "Rust", "Scala"]
 
   var body: some View {
     VStack {
-      PlayerView(isPlaying: $isPlaying)
-      Button(action: {
-        isPlaying.toggle()
-      }) {
-        Text(isPlaying ?  "⏹️" : "▶️").font(.system(size: 100))
+      Picker("Select a paint color", selection: $selection) {
+        ForEach(languages, id: \.self) {
+          Text($0)
+        }
       }
+      .pickerStyle(.menu)
+      
+      Text("選択された言語は: \(selection)")
     }
   }
 }
 
-struct PlayerView: View {
-  @Binding var isPlaying: Bool
-  
-  var body: some View {
-    Text(isPlaying ? "🚀" : "💸").font(.system(size: 100))
-  }
-}
 
 #Preview {
   ContentView()
