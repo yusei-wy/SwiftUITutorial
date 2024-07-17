@@ -8,18 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State var cnt = 0
+  @State private var isPlaying = false
 
   var body: some View {
-    HStack {
-      Button("-") {
-        cnt -= 1
-      }
-      Text("Count: \(cnt)")
-      Button("+") {
-        cnt += 1
+    VStack {
+      PlayerView(isPlaying: $isPlaying)
+      Button(action: {
+        isPlaying.toggle()
+      }) {
+        Text(isPlaying ?  "⏹️" : "▶️").font(.system(size: 100))
       }
     }
+  }
+}
+
+struct PlayerView: View {
+  @Binding var isPlaying: Bool
+  
+  var body: some View {
+    Text(isPlaying ? "🚀" : "💸").font(.system(size: 100))
   }
 }
 
